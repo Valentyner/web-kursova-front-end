@@ -1,0 +1,14 @@
+.navbar-brand img {
+    height: 55px;
+}
+.btn {
+    margin: 5px;
+}
+.right {
+    position: absolute;
+    right: 10px;
+}
+.a {
+    background-color: white;
+    border-color: white;
+}

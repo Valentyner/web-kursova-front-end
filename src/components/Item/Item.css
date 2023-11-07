@@ -1,0 +1,11 @@
+.card-items {
+    display: flex;
+    flex-direction: row;
+}
+.card-title {
+    font-size: 14px;
+}
+.card-text {
+    font-size: 14px;
+    margin: 0;
+}
