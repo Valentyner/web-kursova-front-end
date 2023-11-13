@@ -1,33 +1,60 @@
 import React from 'react';
 import './NavBar.css'
 import "bootstrap/dist/js/bootstrap.min.js";
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectIsAuth } from "../../redux/slices/auth";
 
 const NavBar = () => {
+
+  const isAuth = useSelector(selectIsAuth);
+  const dispatch = useDispatch();
+
+  const onClickLogout = () => {
+    if (window.confirm('Ви дійсно бажаєте вийти?')) {
+      dispatch(logout());
+      window.localStorage.removeItem('token');
+    }
+  };
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/" style={{ background: "white" }}><img src="logo.png" alt="" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/" style={{ background: "white" }}><img src="logo.png" alt="" /></a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="/">Переглянути закупівлі</a>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link to={"/tenders"} className='nav-link active'>Переглянути закупівлі</Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Залишити заяву на закупівлю</a>
+            <li className="nav-item">
+              <a className="nav-link active" href="/create-tender">Залишити заяву на закупівлю</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Зв'язатися з нами</a>
+            <li className="nav-item">
+              <a className="nav-link active" href="/contact-us">Зв'язатися з нами</a>
             </li>
-            <div class="d-flex right" role="search">
-              <a class="a" href="/login">
-                <button type="button" class="btn btn-primary">Авторизуватися</button>
-              </a>
-              <a class="a" href="#">
-                <button type="button" class="btn btn-success">Зареєструватися</button>
-              </a>
+            <div className="d-flex right" role="search">
+              {isAuth ? (
+                <>
+                  <Link to={"/login"}>
+                    <button type="button" className="btn btn-primary">Вийти</button>
+                  </Link>
+                  <Link to={"#"}>
+                    <button type="button" className="btn btn-success">Особистий кабінет</button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to={"/login"}>
+                    <button type="button" className="btn btn-primary">Авторизуватися</button>
+                  </Link>
+                  <Link to={"/registration"}>
+                    <button type="button" className="btn btn-success">Зареєструватися</button>
+                  </Link>
+                </>
+              )}
+
             </div>
           </ul>
         </div>

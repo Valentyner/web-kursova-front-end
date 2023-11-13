@@ -1,27 +1,51 @@
-import React from 'react';
-import NavBar from '../components/NavBar/NavBar';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import React, { useState, useEffect } from 'react';
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from '../axios';
+import { useParams } from 'react-router-dom';
+import NavBar from '../components/NavBar/NavBar';
 
 const TenderPage = () => {
+    const [data, setData] = useState();
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios.get(`/tender/${id}`)
+            .then(res => {
+                setData(res.data);
+            })
+            .catch(err => {
+                console.warn(err);
+                alert("Помилка отримання тендеру");
+            });
+    }, []);
+
     return (
         <>
-            <NavBar />
-            <a href="/" style={{ height: '20px', margin: "10px", textDecoration: 'none', color: "black"}}><ArrowBackIcon/>Повернутися назад</a>
-            <div className="container">
-                <div class="main_block">
-                    <div className="tender_head">
-                        <p>Процедура закупівлі: <b>Відкриті торги з особливостями</b></p>
-                        <p>Процедуру оголошено: 7 лист. 2023(останні зміни: 07/11/2023 7:03:17)</p>
-                        <p>Ідентифікатор плану закупівлі: UA-P-2023-11-07-000025a</p>
+        <NavBar/>
+            <a href="/tenders" style={{ height: '20px', margin: "10px", textDecoration: 'none', color: "black" }}><ArrowBackIcon />Повернутися назад</a>
+            {data ? (
+                <div className="container">
+
+                    <div className="main_block">
+
+                        <>
+                            <div className="tender_head">
+                                <p>Процедура закупівлі: <b>Відкриті торги з особливостями</b></p>
+                                <p>Процедуру оголошено: {data.createdAt} (останні зміни: {data.updatedAt})</p>
+                                <p>Ідентифікатор плану закупівлі: {data.code}</p>
+                            </div>
+                            <div className="tender_price">
+                                <h1>Очікувана вартість з урахуванням ПДВ:</h1>
+                                <p style={{ fontSize: "40px", color: "green" }}><b>{data.price}.00 грн</b></p>
+                            </div>
+                        </>
                     </div>
-                    <div className="tender_price">
-                        <h1>Очікувана вартість з урахуванням ПДВ:</h1>
-                        <p style={{ fontSize: "40px", color:"green" }}><b>27400.00 грн</b></p>
-                    </div>
+                    <h1 className="main_header">{data.text}</h1>
                 </div>
-                <h1 className="main_header">КОД ЗА ДК 021:2015 - 33690000-3 ЛІКАРСЬКІ ЗАСОБИ РІЗНІ (НАБІР РЕАКТИВІВ ДЛЯ АМПЛІФІКАЦІЇ, НАБІР РЕАКТИВІВ ДЛЯ ВИЗНАЧЕННЯ КОНЦЕНТРАЦІЇ ДНК ДЛЯ ФЛУОРОМЕТРА)</h1>
-            </div>
+            ) : (
+                <p>Loading...</p>
+            )}
         </>
     );
 };
