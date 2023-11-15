@@ -2,7 +2,7 @@ import "../src/css/main.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login.jsx";
 import Home from "./pages/HomePage/Home.jsx";
-import TenderPage from "./pages/TenderPage.jsx";
+import TenderPage from "./pages/TenderPage/TenderPage.jsx";
 import MakeTender from "./pages/MakeTender/MakeTender.jsx";
 import MainPage from "./pages/MainPage.jsx";
 import Registration from "./pages/Registration/Registration.jsx";

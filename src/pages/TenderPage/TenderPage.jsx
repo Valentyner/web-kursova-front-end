@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import axios from '../axios';
+import axios from '../../axios';
 import { useParams } from 'react-router-dom';
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
+import './TenderPage.css'
 
 const TenderPage = () => {
     const [data, setData] = useState();
