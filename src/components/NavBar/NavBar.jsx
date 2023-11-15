@@ -32,13 +32,16 @@ const NavBar = () => {
               <a className="nav-link active" href="/create-tender">Залишити заяву на закупівлю</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" href="/contact-us">Зв'язатися з нами</a>
+              <Link to={"/contact-us"} className='nav-link active'>Зв'язатися з нами</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/regulatory"} className='nav-link active'>Нормативно-правова база</Link>
             </li>
             <div className="d-flex right" role="search">
               {isAuth ? (
                 <>
-                  <Link to={"/login"}>
-                    <button type="button" className="btn btn-primary">Вийти</button>
+                  <Link to={"/"}>
+                    <button onClick={onClickLogout} type="button" className="btn btn-primary">Вийти</button>
                   </Link>
                   <Link to={"#"}>
                     <button type="button" className="btn btn-success">Особистий кабінет</button>

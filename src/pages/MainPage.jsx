@@ -11,6 +11,12 @@ const MainPage = () => {
             <div style={{ marginTop: "670px" }}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus facilis quia culpa tempora et perspiciatis suscipit, ullam totam odit repellat! Iste eveniet quidem enim consectetur vitae? Atque sapiente ipsum enim.
             </div>
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus facilis quia culpa tempora et perspiciatis suscipit, ullam totam odit repellat! Iste eveniet quidem enim consectetur vitae? Atque sapiente ipsum enim.
+            </div>
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus facilis quia culpa tempora et perspiciatis suscipit, ullam totam odit repellat! Iste eveniet quidem enim consectetur vitae? Atque sapiente ipsum enim.
+            </div>
         </>
 
     );

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Item from '../../components/Item/Item';
-import Pagination from '../../components/Pagination/Pagination';
 import axios from "../../axios";
 import NavBar from '../../components/NavBar/NavBar';
 
